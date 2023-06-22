@@ -3,33 +3,44 @@ import { styled } from "styled-components";
 import uuid from "react-uuid";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
+import { useSelector } from "react-redux";
 
 const StBody = styled.div`
   background-color: ${(props) => props.color};
   padding: 10px;
 `;
 
+// const initialState = [
+//   {
+//     id: uuid(),
+//     title: "title",
+//     content: "content",
+//     isDone: false,
+//   },
+//   {
+//     id: uuid(),
+//     title: "title",
+//     content: "content",
+//     isDone: true,
+//   },
+//   {
+//     id: uuid(),
+//     title: "title",
+//     content: "content",
+//     isDone: false,
+//   },
+// ];
+
 function App() {
-  const [todolist, setTodoList] = useState([
-    {
-      id: uuid(),
-      title: "title",
-      content: "content",
-      isDone: false,
-    },
-    {
-      id: uuid(),
-      title: "title",
-      content: "content",
-      isDone: true,
-    },
-    {
-      id: uuid(),
-      title: "title",
-      content: "content",
-      isDone: false,
-    },
-  ]);
+  // 여기에서 store에 접근하여, counter의 값을 읽어오려 할 때
+  // useSelector
+  const data = useSelector((state) => {
+    return state;
+  });
+
+  console.log("data: ", data);
+
+  const [todolist, setTodoList] = useState(data.todo);
 
   return (
     <>

@@ -8,13 +8,6 @@ const StTodo = styled.div`
 `;
 
 export default function TodoList({ todolist, setTodoList, listIsDone }) {
-  //   const workingList = todolist.filter((todo) => {
-  //     return todo.isDone === false;
-  //   });
-  //   const doneList = todolist.filter((todo) => {
-  //     return todo.isDone === true;
-  //   });
-
   return (
     <>
       <div>

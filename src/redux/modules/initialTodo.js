@@ -22,15 +22,17 @@ const initialState = [
   },
 ];
 
-//  Recuder : 'state에 변화를 일으키는' 함수
+//  Reducer : 'state에 변화를 일으키는' 함수
 // (1) state를 action의 type에 따라 변경하는 함수
 
 // input : state와 action
-const todo = (state = initialState, action) => {
+const initialTodo = (state = initialState, action) => {
   switch (action.type) {
+    case "DELETE":
+      return state;
     default:
       return state;
   }
 };
 
-export default todo;
+export default initialTodo;

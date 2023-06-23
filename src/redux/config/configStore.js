@@ -1,10 +1,11 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
-// import counter from "../modules/counter";
-import todo from "../modules/todo";
+import initialTodo from "../modules/initialTodo";
+import counter from "../modules/counter";
 
 const rootReducer = combineReducers({
-  todo,
+  initialTodo,
+  counter,
 });
 const store = createStore(rootReducer);
 

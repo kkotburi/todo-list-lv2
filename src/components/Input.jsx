@@ -13,7 +13,6 @@ export default function Input({ todolist, setTodoList }) {
     <div>
       <form
         onSubmit={(event) => {
-          // onSubmit의 설정된 새로고침을 막는 함수
           event.preventDefault();
 
           if (title.trim() === "" || content.trim() === "") {

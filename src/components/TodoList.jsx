@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 const StTodo = styled.div`
@@ -17,6 +18,7 @@ export default function TodoList({ todolist, setTodoList, listIsDone }) {
           .map((todo) => {
             return (
               <StTodo key={todo.id}>
+                <Link to={`/${todo.id}`}>more</Link>
                 <p>{todo.id}</p>
                 <h4>{todo.title}</h4>
                 <p>{todo.content}</p>

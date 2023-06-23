@@ -4,20 +4,20 @@ import uuid from "react-uuid";
 const initialState = [
   {
     id: uuid(),
-    title: "title",
-    content: "content",
+    title: "취업",
+    content: "아마존 가기",
     isDone: false,
   },
   {
     id: uuid(),
-    title: "title",
-    content: "content",
+    title: "취미",
+    content: "재봉틀 배우기",
     isDone: true,
   },
   {
     id: uuid(),
-    title: "title",
-    content: "content",
+    title: "여가",
+    content: "김준수 뮤지컬 보러가기",
     isDone: false,
   },
 ];
@@ -28,7 +28,7 @@ const initialState = [
 // input : state와 action
 const initialTodo = (state = initialState, action) => {
   switch (action.type) {
-    case "DELETE":
+    case "delete":
       return state;
     default:
       return state;

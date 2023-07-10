@@ -1,20 +1,22 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import uuid from "react-uuid";
 import { styled } from "styled-components";
 
-const StTodo = styled.div`
-  border: 4px solid #badec0;
-  margin: 10px;
-  padding: 10px;
-`;
+const List = ({ setTodoList, isDone }) => {
+  const todoList = useSelector((state) => {
+    return state.todoList;
+  });
 
-export default function TodoList({ todolist, setTodoList, listIsDone }) {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div>
-        <h3>{listIsDone ? "Done" : "Working"}</h3>
-        {todolist
-          .filter((todo) => todo.isDone === listIsDone)
+        <h3>{isDone ? "Done" : "Working"}</h3>
+        {todoList
+          .filter((todo) => todo.isDone === isDone)
           .map((todo) => {
             return (
               <StTodo key={todo.id}>
@@ -25,27 +27,23 @@ export default function TodoList({ todolist, setTodoList, listIsDone }) {
                 <p>{todo.isDone.toString()}</p>
                 <button
                   onClick={() => {
-                    const deleteTodoList = todolist.filter((item) => {
-                      return item.id !== todo.id;
+                    dispatch({
+                      type: "DELETE_TODO",
+                      payload: todo.id,
                     });
-                    setTodoList(deleteTodoList);
                   }}
                 >
                   delete
                 </button>
                 <button
                   onClick={() => {
-                    const newTodoList = todolist.map((item) => {
-                      if (item.id === todo.id) {
-                        return { ...item, isDone: !item.isDone };
-                      } else {
-                        return item;
-                      }
+                    dispatch({
+                      type: "SWITCH_TODO",
+                      payload: todo.id,
                     });
-                    setTodoList(newTodoList);
                   }}
                 >
-                  {listIsDone ? "cancle" : "done"}
+                  {isDone ? "cancle" : "done"}
                 </button>
               </StTodo>
             );
@@ -53,4 +51,12 @@ export default function TodoList({ todolist, setTodoList, listIsDone }) {
       </div>
     </>
   );
-}
+};
+
+export default List;
+
+const StTodo = styled.div`
+  border: 4px solid #badec0;
+  margin: 10px;
+  padding: 10px;
+`;

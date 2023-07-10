@@ -2,27 +2,24 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Detail() {
+const Detail = () => {
   const navigate = useNavigate();
 
-  const params = useParams();
+  const { id } = useParams();
 
-  const initialTodo = useSelector((state) => {
-    return state.initialTodo;
+  const todoList = useSelector((state) => {
+    return state.todoList;
   });
 
-  const foundTodo = initialTodo.find((todo) => {
-    return todo.id === params.id;
-  });
-
-  console.log("foundTodo: ", foundTodo);
+  // const todo = todoList.filter((todo) => todo.id === id)[0];
+  const todo = todoList.find((todo) => todo.id === id);
 
   return (
     <>
       <div>Detail</div>
-      <p>{foundTodo.id}</p>
-      <h3>{foundTodo.title}</h3>
-      <p>{foundTodo.content}</p>
+      <p>{todo.id}</p>
+      <h3>{todo.title}</h3>
+      <p>{todo.content}</p>
       <button
         onClick={() => {
           navigate("/");
@@ -32,6 +29,6 @@ function Detail() {
       </button>
     </>
   );
-}
+};
 
 export default Detail;
